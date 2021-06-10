@@ -6,8 +6,7 @@ from util import toPascalCase
 
 def domainGenerator(variable_type_list, variable_name_list, class_name):
     if(len(variable_name_list) != len(variable_type_list)):
-        print("DomainException : Unequal length.")
-        return
+        raise Exception("Unequal length.")
     var_lines = []
     getter_setter_lines = []
     for i, type in enumerate(variable_type_list):

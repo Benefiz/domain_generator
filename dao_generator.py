@@ -6,8 +6,7 @@ from util import toPascalCase
 
 def daoGenerator(dao_type_list, dao_name_list, domain_name_list, class_name, table_name):
     if(len(dao_name_list) != len(dao_type_list)):
-        print("DaoException : Unequal length.")
-        return
+        raise Exception("Unequal length.")
     var_lines = []
     mapper_object_lines = []
     for i, type in enumerate(dao_type_list):
@@ -47,8 +46,7 @@ def mapper_object_convert(dao_type, dao_name, domain_name):
     elif dao_type == 'int':
         s = "\t\tmapperObject.set{domain}(rs.getObject({dao}) != null ? rs.getInt({dao}) : null);\n"
     else:
-        print("DaoException : Unknown Variable Type.")
-        return
+        raise Exception("Unknown Variable Type.")
     return s.format(domain=toPascalCase(domain_name), dao=dao_name.upper())
 
 

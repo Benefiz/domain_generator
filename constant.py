@@ -10,3 +10,6 @@ author = "ekkasit.tan"
 
 createDomain = True
 createDao = True
+
+dbs_type_list = ["varchar","datetime","int","bigint"]
+dom_type_list = ["String","Date","Integer","BigInteger"]
