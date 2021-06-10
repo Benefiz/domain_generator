@@ -1,0 +1,11 @@
+package {package};
+
+/**
+ * @author {author}
+ */
+public class {domain} extends BaseDomain {{
+
+{var}
+{getter_setter}
+
+}}

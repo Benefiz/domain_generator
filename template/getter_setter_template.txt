@@ -1,0 +1,7 @@
+    public {type} {getter}{pascal_name}() {{
+        return {name};
+    }}
+
+    public void set{pascal_name}({type} {name}) {{
+        this.{name} = {name};
+    }}

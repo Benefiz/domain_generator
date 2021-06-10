@@ -1,0 +1,44 @@
+package {package_dao}.impl;
+
+import {package_dao}.{domain}Dao;
+import {package_domain}.{domain};
+
+import java.sql.ResultSet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+/**
+ * @author {author}
+ */
+@Repository
+public class {domain}DaoImpl implements {domain}Dao {{
+
+    @Autowired
+    private LoggerService loggerService;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    private final String TABLE = "{table}";
+    private final String CREATE_DATE = "create_date";
+    private final String CREATE_BY = "create_by";
+    private final String UPDATE_DATE = "update_date";
+    private final String UPDATE_BY = "update_by";
+    private final String IS_DELETE = "is_delete";
+
+{var}
+    final RowMapper<{domain}> ROW_MAPPER = (ResultSet rs, int i) -> {{
+        final {domain} mapperObject = new {domain}();
+        mapperObject.setCreateDate(rs.getTimestamp(CREATE_DATE));
+        mapperObject.setCreateBy(rs.getString(CREATE_BY));
+        mapperObject.setUpdateDate(rs.getTimestamp(UPDATE_DATE));
+        mapperObject.setUpdateBy(rs.getString(UPDATE_BY));
+        mapperObject.setIsDelete(rs.getString(IS_DELETE));
+
+{mapper_object}
+        return mapperObject;
+    }};
+
+}}

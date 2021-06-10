@@ -1,0 +1,8 @@
+package {package};
+
+/**
+ * @author {author}
+ */
+public interface {domain}Dao {{
+    
+}}

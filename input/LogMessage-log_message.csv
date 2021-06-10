@@ -1,0 +1,5 @@
+dom_type,dom_name,dao_type,dao_name
+String,logID,varchar,log_id
+String,message,varchar,message
+Integer,unreadCount,int,unread_count
+Date,textTime,datetime,text_time
