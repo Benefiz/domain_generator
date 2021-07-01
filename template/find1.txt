@@ -1,0 +1,2 @@
+
+    public List<{domain}> find(String refID, {domain} findObject) throws Exception;

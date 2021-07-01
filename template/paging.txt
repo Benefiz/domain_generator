@@ -1,0 +1,4 @@
+
+    public List<{domain}> findByPaging({domain} findObject, Integer index, Integer rowPerPage) throws Exception;
+
+    public int count({domain} findObject) throws Exception;

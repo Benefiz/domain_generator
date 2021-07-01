@@ -1,0 +1,2 @@
+
+    public void update({domain} updateObject) throws Exception;

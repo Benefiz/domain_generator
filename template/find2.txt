@@ -1,0 +1,2 @@
+
+    public List<{domain}> find({domain} findObject) throws Exception;

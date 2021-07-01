@@ -1,0 +1,2 @@
+
+    public void insert(List<{domain}> insertObjectList) throws Exception;

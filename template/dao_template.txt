@@ -1,8 +1,10 @@
 package {package};
 
+import {package_domain}.{domain};
+
 /**
  * @author {author}
  */
 public interface {domain}Dao {{
-    
+{method}
 }}

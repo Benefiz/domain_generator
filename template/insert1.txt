@@ -1,0 +1,2 @@
+
+    public void insert(String refID, List<{domain}> insertObjectList) throws Exception;

@@ -1,0 +1,2 @@
+
+    public void update(String refID, {domain} updateObject) throws Exception;

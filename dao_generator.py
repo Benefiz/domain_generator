@@ -4,7 +4,7 @@ import constant
 from util import toPascalCase
 
 
-def daoGenerator(dao_type_list, dao_name_list, domain_name_list, class_name, table_name):
+def daoGenerator(dao_type_list, dao_name_list, domain_name_list, class_name, table_name, method):
     if(len(dao_name_list) != len(dao_type_list)):
         raise Exception("Unequal length.")
     var_lines = []
@@ -22,7 +22,7 @@ def daoGenerator(dao_type_list, dao_name_list, domain_name_list, class_name, tab
     file.writelines(dao_impl_template)
     file.close()
     # Create Dao
-    dao_template = replace_dao_attribute(class_name, constant.author)
+    dao_template = replace_dao_attribute(class_name, constant.author, method)
     file_name = os.path.join(constant.project_path, constant.package_path,
                              constant.dao_path, class_name+'Dao.java')
     file = io.open(file_name, "w", encoding="utf-8")
@@ -40,7 +40,7 @@ def mapper_object_convert(dao_type, dao_name, domain_name):
     if dao_type == 'varchar':
         s = "\t\tmapperObject.set{domain}(rs.getString({dao}));\n"
     elif dao_type == 'bigint':
-        s = "\t\tmapperObject.set{domain}(rs.getObject({dao}) != null ? BigInteger.valueOf(rs.getLong({dao})) : null);\n"
+        s = "\t\tmapperObject.set{domain}(rs.getObject({dao}) != null ? new BigInteger(rs.getString({dao})) : null);\n"
     elif dao_type == 'datetime':
         s = "\t\tmapperObject.set{domain}(rs.getTimestamp({dao}));\n"
     elif dao_type == 'int':
@@ -58,6 +58,12 @@ def replace_dao_impl_attribute(var_lines, mapper_object_lines, table_name, domai
         package_domain=constant.domain_path.replace('/', '.'))
 
 
-def replace_dao_attribute(domain_name, author):
-    return open('template/dao_template.txt', 'r').read().format(
-        domain=domain_name, author=author, package=constant.dao_path.replace('/', '.'))
+def replace_dao_attribute(domain_name, author, method_list):
+    dao_template = open('template/dao_template.txt', 'r').read()
+    method_lines = []
+    temp_list = [value.replace(".txt", "") for value in os.listdir("template")]
+    for method in [value for value in method_list if value in temp_list]:
+        method_lines.append(
+            open('template/'+method+'.txt').read().format(domain=domain_name))
+    return dao_template.format(method="".join(method_lines), author=author, package=constant.dao_path.replace('/', '.'),
+                               domain=domain_name, package_domain=constant.domain_path.replace('/', '.'))
